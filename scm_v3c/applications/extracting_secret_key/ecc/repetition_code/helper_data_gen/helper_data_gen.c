@@ -4,17 +4,13 @@
 #include "memory_map.h"
 #include "optical.h"
 #include "scm3c_hw_interface.h"
+#include "bit_utils.h"
+#include "repetition_code.h"
 
 //=========================== defines =========================================
 
 #define CRC_VALUE (*((unsigned int*)0x0000FFFC))
 #define CODE_LENGTH (*((unsigned int*)0x0000FFF8))
-
-#define PUF_ADDR ((uint8_t*)0x20005000) // adequate SCuM SRAM address for PUF
-#define BYTE_SIZE 8                     //
-#define KEY_LEN 64                      // length of key
-#define REP_FACTOR 9                    // repetition factor of ecc, must be odd
-#define READ_BITS (KEY_LEN*REP_FACTOR)  // number of bits to read from the SRAM
 
 //=========================== variables =======================================
 
@@ -26,10 +22,6 @@ typedef struct {
 app_vars_t app_vars;
 
 //=========================== prototypes ======================================
-
-uint8_t get_bit(uint8_t* byte_arr, uint32_t pos);
-
-void set_bit(uint8_t* byte_arr, uint32_t pos, uint8_t val);
 
 //=========================== main ============================================
 
@@ -74,20 +66,3 @@ int main(void) {
 //=========================== public ==========================================
 
 //=========================== private =========================================
-
-// utility function to get the bit indexed at "pos" of
-// bytearray "byte_arr"
-uint8_t get_bit(uint8_t* byte_arr, uint32_t pos){
-    return (byte_arr[pos/BYTE_SIZE]>>(pos%BYTE_SIZE))&1;
-}
-
-// utility function to set the bit indexed at "pos" to
-// "val" in the bytearray "byte_arr"
-void set_bit(uint8_t* byte_arr, uint32_t pos, uint8_t val){
-    if(val){
-        byte_arr[pos/BYTE_SIZE] |= (1 << (pos%BYTE_SIZE));
-    }
-    else {
-        byte_arr[pos/BYTE_SIZE] &= ~(1 << (pos&BYTE_SIZE));
-    }
-}

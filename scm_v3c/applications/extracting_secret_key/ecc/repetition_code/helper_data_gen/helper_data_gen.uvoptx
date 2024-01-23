@@ -22,7 +22,7 @@
   </DaveTm>
 
   <Target>
-    <TargetName>sram_puf_rc_helper_gen</TargetName>
+    <TargetName>helper_data_gen</TargetName>
     <ToolsetNumber>0x4</ToolsetNumber>
     <ToolsetName>ARM-ADS</ToolsetName>
     <TargetOption>
@@ -179,11 +179,11 @@
       <GroupNumber>1</GroupNumber>
       <FileNumber>1</FileNumber>
       <FileType>1</FileType>
-      <tvExp>0</tvExp>
+      <tvExp>1</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\sram_puf_rc_helper_gen.c</PathWithFileName>
-      <FilenameWithoutPath>sram_puf_rc_helper_gen.c</FilenameWithoutPath>
+      <PathWithFileName>.\helper_data_gen.c</PathWithFileName>
+      <FilenameWithoutPath>helper_data_gen.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -191,7 +191,7 @@
 
   <Group>
     <GroupName>drv</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -202,7 +202,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\cm0dsasm.s</PathWithFileName>
+      <PathWithFileName>..\..\..\..\..\cm0dsasm.s</PathWithFileName>
       <FilenameWithoutPath>cm0dsasm.s</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -214,7 +214,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\Memory_Map.h</PathWithFileName>
+      <PathWithFileName>..\..\..\..\..\Memory_Map.h</PathWithFileName>
       <FilenameWithoutPath>Memory_Map.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -226,7 +226,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\retarget.c</PathWithFileName>
+      <PathWithFileName>..\..\..\..\..\retarget.c</PathWithFileName>
       <FilenameWithoutPath>retarget.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -238,7 +238,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\optical.c</PathWithFileName>
+      <PathWithFileName>..\..\..\..\..\optical.c</PathWithFileName>
       <FilenameWithoutPath>optical.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -250,7 +250,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\optical.h</PathWithFileName>
+      <PathWithFileName>..\..\..\..\..\optical.h</PathWithFileName>
       <FilenameWithoutPath>optical.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -262,7 +262,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\radio.c</PathWithFileName>
+      <PathWithFileName>..\..\..\..\..\radio.c</PathWithFileName>
       <FilenameWithoutPath>radio.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -274,7 +274,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\radio.h</PathWithFileName>
+      <PathWithFileName>..\..\..\..\..\radio.h</PathWithFileName>
       <FilenameWithoutPath>radio.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -286,7 +286,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\adc.c</PathWithFileName>
+      <PathWithFileName>..\..\..\..\..\adc.c</PathWithFileName>
       <FilenameWithoutPath>adc.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -298,7 +298,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\adc.h</PathWithFileName>
+      <PathWithFileName>..\..\..\..\..\adc.h</PathWithFileName>
       <FilenameWithoutPath>adc.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -310,7 +310,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\gpio.c</PathWithFileName>
+      <PathWithFileName>..\..\..\..\..\gpio.c</PathWithFileName>
       <FilenameWithoutPath>gpio.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -322,7 +322,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\gpio.h</PathWithFileName>
+      <PathWithFileName>..\..\..\..\..\gpio.h</PathWithFileName>
       <FilenameWithoutPath>gpio.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -334,7 +334,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\uart.c</PathWithFileName>
+      <PathWithFileName>..\..\..\..\..\uart.c</PathWithFileName>
       <FilenameWithoutPath>uart.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -346,7 +346,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\uart.h</PathWithFileName>
+      <PathWithFileName>..\..\..\..\..\uart.h</PathWithFileName>
       <FilenameWithoutPath>uart.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -358,7 +358,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\rftimer.c</PathWithFileName>
+      <PathWithFileName>..\..\..\..\..\rftimer.c</PathWithFileName>
       <FilenameWithoutPath>rftimer.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -370,7 +370,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\rftimer.h</PathWithFileName>
+      <PathWithFileName>..\..\..\..\..\rftimer.h</PathWithFileName>
       <FilenameWithoutPath>rftimer.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -382,7 +382,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\scum_defs.h</PathWithFileName>
+      <PathWithFileName>..\..\..\..\..\scum_defs.h</PathWithFileName>
       <FilenameWithoutPath>scum_defs.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -394,7 +394,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\scm3c_hw_interface.h</PathWithFileName>
+      <PathWithFileName>..\..\..\..\..\scm3c_hw_interface.h</PathWithFileName>
       <FilenameWithoutPath>scm3c_hw_interface.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -406,8 +406,64 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\scm3c_hw_interface.c</PathWithFileName>
+      <PathWithFileName>..\..\..\..\..\scm3c_hw_interface.c</PathWithFileName>
       <FilenameWithoutPath>scm3c_hw_interface.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+  </Group>
+
+  <Group>
+    <GroupName>repetition_code</GroupName>
+    <tvExp>1</tvExp>
+    <tvExpOptDlg>0</tvExpOptDlg>
+    <cbSel>0</cbSel>
+    <RteFlg>0</RteFlg>
+    <File>
+      <GroupNumber>3</GroupNumber>
+      <FileNumber>20</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>1</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\bit_utils.c</PathWithFileName>
+      <FilenameWithoutPath>bit_utils.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>3</GroupNumber>
+      <FileNumber>21</FileNumber>
+      <FileType>5</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\bit_utils.h</PathWithFileName>
+      <FilenameWithoutPath>bit_utils.h</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>3</GroupNumber>
+      <FileNumber>22</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\repetition_code.c</PathWithFileName>
+      <FilenameWithoutPath>repetition_code.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>3</GroupNumber>
+      <FileNumber>23</FileNumber>
+      <FileType>5</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\repetition_code.h</PathWithFileName>
+      <FilenameWithoutPath>repetition_code.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

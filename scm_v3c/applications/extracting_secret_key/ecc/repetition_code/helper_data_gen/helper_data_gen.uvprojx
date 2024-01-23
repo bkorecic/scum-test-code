@@ -7,7 +7,7 @@
 
   <Targets>
     <Target>
-      <TargetName>sram_puf_rc_read_key</TargetName>
+      <TargetName>helper_data_gen</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
       <pCCUsed>5060750::V5.06 update 6 (build 750)::ARMCC</pCCUsed>
@@ -49,7 +49,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\Objects\</OutputDirectory>
-          <OutputName>sram_puf_rc_read_key</OutputName>
+          <OutputName>helper_data_gen</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
@@ -82,8 +82,8 @@
           <AfterMake>
             <RunUserProg1>1</RunUserProg1>
             <RunUserProg2>1</RunUserProg2>
-            <UserProg1Name>fromelf --bin .\Objects\sram_puf_rc_read_key.axf -o .\Objects\sram_puf_rc_read_key.bin</UserProg1Name>
-            <UserProg2Name>fromelf -cvf .\Objects\sram_puf_rc_read_key.axf -o .\Objects\disasm.txt</UserProg2Name>
+            <UserProg1Name>fromelf --bin .\Objects\helper_data_gen.axf -o .\Objects\helper_data_gen.bin</UserProg1Name>
+            <UserProg2Name>fromelf -cvf .\Objects\helper_data_gen.axf -o .\Objects\disasm.txt</UserProg2Name>
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
             <nStopA1X>0</nStopA1X>
@@ -337,7 +337,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>../../</IncludePath>
+              <IncludePath>../../../../../;../</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -368,7 +368,7 @@
             <TextAddressRange>0x00000000</TextAddressRange>
             <DataAddressRange>0x20000000</DataAddressRange>
             <pXoBase></pXoBase>
-            <ScatterFile>sram_puf_rc_read_key.sct</ScatterFile>
+            <ScatterFile>helper_data_gen.sct</ScatterFile>
             <IncludeLibs></IncludeLibs>
             <IncludeLibsPath></IncludeLibsPath>
             <Misc></Misc>
@@ -382,9 +382,9 @@
           <GroupName>app</GroupName>
           <Files>
             <File>
-              <FileName>sram_puf_rc_read_key.c</FileName>
+              <FileName>helper_data_gen.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\sram_puf_rc_read_key.c</FilePath>
+              <FilePath>.\helper_data_gen.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -394,92 +394,117 @@
             <File>
               <FileName>cm0dsasm.s</FileName>
               <FileType>2</FileType>
-              <FilePath>..\..\cm0dsasm.s</FilePath>
+              <FilePath>..\..\..\..\..\cm0dsasm.s</FilePath>
             </File>
             <File>
               <FileName>Memory_Map.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\..\Memory_Map.h</FilePath>
+              <FilePath>..\..\..\..\..\Memory_Map.h</FilePath>
             </File>
             <File>
               <FileName>retarget.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\retarget.c</FilePath>
+              <FilePath>..\..\..\..\..\retarget.c</FilePath>
             </File>
             <File>
               <FileName>optical.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\optical.c</FilePath>
+              <FilePath>..\..\..\..\..\optical.c</FilePath>
             </File>
             <File>
               <FileName>optical.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\..\optical.h</FilePath>
+              <FilePath>..\..\..\..\..\optical.h</FilePath>
             </File>
             <File>
               <FileName>radio.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\radio.c</FilePath>
+              <FilePath>..\..\..\..\..\radio.c</FilePath>
             </File>
             <File>
               <FileName>radio.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\..\radio.h</FilePath>
+              <FilePath>..\..\..\..\..\radio.h</FilePath>
             </File>
             <File>
               <FileName>adc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\adc.c</FilePath>
+              <FilePath>..\..\..\..\..\adc.c</FilePath>
             </File>
             <File>
               <FileName>adc.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\..\adc.h</FilePath>
+              <FilePath>..\..\..\..\..\adc.h</FilePath>
             </File>
             <File>
               <FileName>gpio.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\gpio.c</FilePath>
+              <FilePath>..\..\..\..\..\gpio.c</FilePath>
             </File>
             <File>
               <FileName>gpio.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\..\gpio.h</FilePath>
+              <FilePath>..\..\..\..\..\gpio.h</FilePath>
             </File>
             <File>
               <FileName>uart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\uart.c</FilePath>
+              <FilePath>..\..\..\..\..\uart.c</FilePath>
             </File>
             <File>
               <FileName>uart.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\..\uart.h</FilePath>
+              <FilePath>..\..\..\..\..\uart.h</FilePath>
             </File>
             <File>
               <FileName>rftimer.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\rftimer.c</FilePath>
+              <FilePath>..\..\..\..\..\rftimer.c</FilePath>
             </File>
             <File>
               <FileName>rftimer.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\..\rftimer.h</FilePath>
+              <FilePath>..\..\..\..\..\rftimer.h</FilePath>
             </File>
             <File>
               <FileName>scum_defs.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\..\scum_defs.h</FilePath>
+              <FilePath>..\..\..\..\..\scum_defs.h</FilePath>
             </File>
             <File>
               <FileName>scm3c_hw_interface.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\..\scm3c_hw_interface.h</FilePath>
+              <FilePath>..\..\..\..\..\scm3c_hw_interface.h</FilePath>
             </File>
             <File>
               <FileName>scm3c_hw_interface.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\scm3c_hw_interface.c</FilePath>
+              <FilePath>..\..\..\..\..\scm3c_hw_interface.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>repetition_code</GroupName>
+          <Files>
+            <File>
+              <FileName>bit_utils.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\bit_utils.c</FilePath>
+            </File>
+            <File>
+              <FileName>bit_utils.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\bit_utils.h</FilePath>
+            </File>
+            <File>
+              <FileName>repetition_code.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\repetition_code.c</FilePath>
+            </File>
+            <File>
+              <FileName>repetition_code.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\repetition_code.h</FilePath>
             </File>
           </Files>
         </Group>
