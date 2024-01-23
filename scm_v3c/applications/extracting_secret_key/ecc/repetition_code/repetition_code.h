@@ -12,8 +12,8 @@
 #define REP_FACTOR 9                    // repetition factor of ecc, must be odd
 #define READ_BITS (KEY_LEN*REP_FACTOR)  // number of bits to read from the SRAM
 
-// hd stands for "helper data". It is generated with the helper_data_gen application
+// hd stands for "helper data". It is generated with the helper_data_gen application, hard-coded into this variable
 // and then used in the "read_key" application.
-extern const uint8_t ecc_hd[];
+extern const uint8_t hard_coded_ecc_hd[];
 
 #endif

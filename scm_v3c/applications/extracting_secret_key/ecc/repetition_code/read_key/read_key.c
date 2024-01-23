@@ -39,7 +39,7 @@ int main(void) {
     // read bytes
     for(i=0; i<READ_BITS/BYTE_SIZE; i++){
         // calculate XOR with helper data as we read
-        app_vars.sram_data[i] = ecc_hd[i]^(*(PUF_ADDR+i));
+        app_vars.sram_data[i] = hard_coded_ecc_hd[i]^(*(PUF_ADDR+i));
     }
 
     // recover the key

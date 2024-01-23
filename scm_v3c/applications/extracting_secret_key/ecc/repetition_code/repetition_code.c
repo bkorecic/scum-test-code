@@ -1,6 +1,6 @@
 #include "repetition_code.h"
 
-const uint8_t ecc_hd[] = // helper data for ECC
+const uint8_t hard_coded_ecc_hd[] = // helper data for ECC
 {
     0x1a, 0x89, 0x42, 0xd3, 0x4c, 0xdc,
     0x84, 0x1d, 0xea, 0x98, 0x64, 0xf0,
