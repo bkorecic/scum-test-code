@@ -80,16 +80,6 @@
 
 # define _BSD_SOURCE
 # define _DEFAULT_SOURCE
-# if (defined(_WIN32) || defined(_WIN64)) && !defined(__WINDOWS__)
-#  include <winsock2.h>
-#  define alloca(size) _alloca(size)
-#  pragma comment( lib, "ws2_32.lib")
-# elif defined(__APPLE__)
-#  include <libkern/OSByteOrder.h>
-#  define htobe32(x) OSSwapHostToBigInt32(x)
-# else
-#  include <arpa/inet.h>
-# endif
 # if !defined(htobe32)
 #  if BYTE_ORDER == LITTLE_ENDIAN
 #   define htobe32(x) htonl(x)
