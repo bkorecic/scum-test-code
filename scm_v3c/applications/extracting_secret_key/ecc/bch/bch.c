@@ -65,15 +65,8 @@
  * finite fields GF(2^q). In Rapport de recherche INRIA no 2829, 1996.
  */
 
-#include <linux/kernel.h>
-#include <linux/errno.h>
-#include <linux/init.h>
-#include <linux/module.h>
-#include <linux/slab.h>
-#include <linux/bitops.h>
-#include <linux/bitrev.h>
-#include <asm/byteorder.h>
-#include <linux/bch.h>
+#include <stdint.h>
+#include "params.h"
 
 #if defined(CONFIG_BCH_CONST_PARAMS)
 #define GF_M(_p)               (CONFIG_BCH_CONST_M)
@@ -115,7 +108,7 @@ struct gf_poly_deg1 {
 	unsigned int   c[2];
 };
 
-static u8 swap_bits(struct bch_control *bch, u8 in)
+static uint8_t swap_bits(struct bch_control *bch, uint8_t in)
 {
 	if (!bch->swap_bits)
 		return in;
@@ -135,7 +128,7 @@ static void bch_encode_unaligned(struct bch_control *bch,
 	const int l = BCH_ECC_WORDS(bch)-1;
 
 	while (len--) {
-		u8 tmp = swap_bits(bch, *data++);
+		uint8_t tmp = swap_bits(bch, *data++);
 
 		p = bch->mod8_tab + (l+1)*(((ecc[0] >> 24)^(tmp)) & 0xff);
 
@@ -156,15 +149,15 @@ static void load_ecc8(struct bch_control *bch, uint32_t *dst,
 	unsigned int i, nwords = BCH_ECC_WORDS(bch)-1;
 
 	for (i = 0; i < nwords; i++, src += 4)
-		dst[i] = ((u32)swap_bits(bch, src[0]) << 24) |
-			((u32)swap_bits(bch, src[1]) << 16) |
-			((u32)swap_bits(bch, src[2]) << 8) |
+		dst[i] = ((uint32_t)swap_bits(bch, src[0]) << 24) |
+			((uint32_t)swap_bits(bch, src[1]) << 16) |
+			((uint32_t)swap_bits(bch, src[2]) << 8) |
 			swap_bits(bch, src[3]);
 
 	memcpy(pad, src, BCH_ECC_BYTES(bch)-4*nwords);
-	dst[nwords] = ((u32)swap_bits(bch, pad[0]) << 24) |
-		((u32)swap_bits(bch, pad[1]) << 16) |
-		((u32)swap_bits(bch, pad[2]) << 8) |
+	dst[nwords] = ((uint32_t)swap_bits(bch, pad[0]) << 24) |
+		((uint32_t)swap_bits(bch, pad[1]) << 16) |
+		((uint32_t)swap_bits(bch, pad[2]) << 8) |
 		swap_bits(bch, pad[3]);
 }
 
@@ -259,10 +252,10 @@ void bch_encode(struct bch_control *bch, const uint8_t *data,
 		/* input data is read in big-endian format */
 		w = cpu_to_be32(*pdata++);
 		if (bch->swap_bits)
-			w = (u32)swap_bits(bch, w) |
-			    ((u32)swap_bits(bch, w >> 8) << 8) |
-			    ((u32)swap_bits(bch, w >> 16) << 16) |
-			    ((u32)swap_bits(bch, w >> 24) << 24);
+			w = (uint32_t)swap_bits(bch, w) |
+			    ((uint32_t)swap_bits(bch, w >> 8) << 8) |
+			    ((uint32_t)swap_bits(bch, w >> 16) << 16) |
+			    ((uint32_t)swap_bits(bch, w >> 24) << 24);
 		w ^= r[0];
 		p0 = tab0 + (l+1)*((w >>  0) & 0xff);
 		p1 = tab1 + (l+1)*((w >>  8) & 0xff);
