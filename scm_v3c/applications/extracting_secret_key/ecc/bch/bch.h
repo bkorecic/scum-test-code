@@ -16,6 +16,38 @@
 
 #include <stdint.h>
 #include <stdbool.h>
+#include "params.h"
+
+#define GF_M		(CONFIG_BCH_CONST_M)
+#define GF_T		(CONFIG_BCH_CONST_T)
+#define GF_N		((1 << (CONFIG_BCH_CONST_M))-1)
+#define BCH_MAX_M	(CONFIG_BCH_CONST_M)
+#define BCH_MAX_T	(CONFIG_BCH_CONST_T)
+
+#define DIV_ROUND_UP(n,d) (((n) + (d) - 1) / (d))
+#define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]))
+
+#define BCH_ECC_WORDS      DIV_ROUND_UP(GF_M*GF_T, 32)
+#define BCH_ECC_BYTES      DIV_ROUND_UP(GF_M*GF_T, 8)
+
+#define BCH_ECC_MAX_WORDS      DIV_ROUND_UP(BCH_MAX_M * BCH_MAX_T, 32)
+
+/*
+ * represent a polynomial over GF(2^m)
+ */
+struct gf_poly {
+	unsigned int deg;    /* polynomial degree */
+	unsigned int c[GF_M * GF_T];   /* polynomial terms */
+};
+
+/* given its degree, compute a polynomial size in bytes */
+#define GF_POLY_SZ(_d) (sizeof(struct gf_poly)+((_d)+1)*sizeof(unsigned int))
+
+/* polynomial of degree 1 */
+struct gf_poly_deg1 {
+	struct gf_poly poly;
+	unsigned int   c[2];
+};
 
 /**
  * struct bch_control - BCH control structure
@@ -43,23 +75,21 @@ struct bch_control {
 	unsigned int    ecc_bits;
 	unsigned int    ecc_bytes;
 /* private: */
-	uint16_t       *a_pow_tab;
-	uint16_t       *a_log_tab;
-	uint32_t       *mod8_tab;
-	uint32_t       *ecc_buf;
-	uint32_t       *ecc_buf2;
-	unsigned int   *xi_tab;
-	unsigned int   *syn;
-	int            *cache;
-	struct gf_poly *elp;
-	struct gf_poly *poly_2t[4];
+	uint16_t        a_pow_tab[1 + GF_N];
+	uint16_t        a_log_tab[1 + GF_N];
+	uint32_t        mod8_tab[1024 * BCH_ECC_WORDS];
+	uint32_t        ecc_buf[BCH_ECC_WORDS];
+	uint32_t        ecc_buf2[BCH_ECC_WORDS];
+	unsigned int    xi_tab[GF_M];
+	unsigned int    syn[2 * GF_T];
+	int             cache[2 * GF_T];
+	struct gf_poly  elp;
+	struct gf_poly  poly_2t[4];
 	bool		swap_bits;
 };
 
-struct bch_control *bch_init(int m, int t, unsigned int prim_poly,
+int bch_init(struct bch_control *bch, unsigned int prim_poly,
 			     bool swap_bits);
-
-void bch_free(struct bch_control *bch);
 
 void bch_encode(struct bch_control *bch, const uint8_t *data,
 		unsigned int len, uint8_t *ecc);
