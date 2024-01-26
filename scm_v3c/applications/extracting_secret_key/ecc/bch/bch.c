@@ -65,6 +65,8 @@
  * finite fields GF(2^q). In Rapport de recherche INRIA no 2829, 1996.
  */
 
+#include <string.h>
+#include <errno.h>
 #include "params.h"
 #include "bch.h"
 
@@ -82,10 +84,29 @@
 #define BCH_MAX_T              64 /* 64 bit correction */
 #endif
 
+#define DIV_ROUND_UP(n,d) (((n) + (d) - 1) / (d))
+#define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0])
+
 #define BCH_ECC_WORDS(_p)      DIV_ROUND_UP(GF_M(_p)*GF_T(_p), 32)
 #define BCH_ECC_BYTES(_p)      DIV_ROUND_UP(GF_M(_p)*GF_T(_p), 8)
 
 #define BCH_ECC_MAX_WORDS      DIV_ROUND_UP(BCH_MAX_M * BCH_MAX_T, 32)
+
+#if !defined(htobe32)
+# if BYTE_ORDER == LITTLE_ENDIAN
+uint16_t htons(uint16_t v) {
+  return (v >> 8) | (v << 8);
+}
+uint32_t htonl(uint32_t v) {
+  return htons(v >> 16) | (htons((uint16_t) v) << 16);
+}
+#  define htobe32(x) htonl(x)
+# elif BYTE_ORDER == BIG_ENDIAN
+#  define htobe32(x) (x)
+# endif
+#endif
+
+#define cpu_to_be32(x) htobe32(x)
 
 #ifndef dbg
 #define dbg(_fmt, args...)     do {} while (0)
@@ -107,6 +128,11 @@ struct gf_poly_deg1 {
 	struct gf_poly poly;
 	unsigned int   c[2];
 };
+
+static uint8_t bitrev8(uint8_t b){
+	// Source: http://www-graphics.stanford.edu/~seander/bithacks.html#ReverseByteWith32Bits
+	return ((b * 0x0802LU & 0x22110LU) | (b * 0x8020LU & 0x88440LU)) * 0x10101LU >> 16; 
+}
 
 static uint8_t swap_bits(struct bch_control *bch, uint8_t in)
 {
@@ -211,9 +237,6 @@ void bch_encode(struct bch_control *bch, const uint8_t *data,
 	const uint32_t * const tab3 = tab2 + 256*(l+1);
 	const uint32_t *pdata, *p0, *p1, *p2, *p3;
 
-	if (WARN_ON(r_bytes > sizeof(r)))
-		return;
-
 	if (ecc) {
 		/* load ecc parity bytes into internal 32-bit buffer */
 		load_ecc8(bch, bch->ecc_buf, ecc);
@@ -277,7 +300,6 @@ void bch_encode(struct bch_control *bch, const uint8_t *data,
 	if (ecc)
 		store_ecc8(bch, ecc, bch->ecc_buf);
 }
-EXPORT_SYMBOL_GPL(bch_encode);
 
 static inline int modulo(struct bch_control *bch, unsigned int v)
 {
@@ -296,6 +318,16 @@ static inline int mod_s(struct bch_control *bch, unsigned int v)
 {
 	const unsigned int n = GF_N(bch);
 	return (v < n) ? v : v-n;
+}
+
+static inline unsigned int fls(unsigned int x)
+{
+	unsigned int count = 0;
+
+	while (x >>= 1) {
+		count++;
+	}
+	return count + 1;
 }
 
 static inline int deg(unsigned int poly)
@@ -1071,7 +1103,6 @@ int bch_decode(struct bch_control *bch, const uint8_t *data, unsigned int len,
 	}
 	return (err >= 0) ? err : -EBADMSG;
 }
-EXPORT_SYMBOL_GPL(bch_decode);
 
 /*
  * generate Galois field lookup tables
@@ -1371,7 +1402,6 @@ fail:
 	bch_free(bch);
 	return NULL;
 }
-EXPORT_SYMBOL_GPL(bch_init);
 
 /**
  *  bch_free - free the BCH control structure
@@ -1398,8 +1428,3 @@ void bch_free(struct bch_control *bch)
 		kfree(bch);
 	}
 }
-EXPORT_SYMBOL_GPL(bch_free);
-
-MODULE_LICENSE("GPL");
-MODULE_AUTHOR("Ivan Djelic <ivan.djelic@parrot.com>");
-MODULE_DESCRIPTION("Binary BCH encoder/decoder");
