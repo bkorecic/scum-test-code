@@ -13,6 +13,6 @@ void set_bit(uint8_t* byte_arr, uint32_t pos, uint8_t val){
         byte_arr[pos/BYTE_SIZE] |= (1 << (pos%BYTE_SIZE));
     }
     else {
-        byte_arr[pos/BYTE_SIZE] &= ~(1 << (pos&BYTE_SIZE));
+        byte_arr[pos/BYTE_SIZE] &= ~(1 << (pos%BYTE_SIZE));
     }
 }
