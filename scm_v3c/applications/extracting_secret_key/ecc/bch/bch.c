@@ -67,6 +67,7 @@
 
 #include <string.h>
 #include <errno.h>
+#include <stdio.h>
 #include "params.h"
 #include "bch.h"
 
@@ -1324,7 +1325,7 @@ struct bch_control *bch_init(int m, int t, unsigned int prim_poly,
 
 #if defined(CONFIG_BCH_CONST_PARAMS)
 	if ((m != (CONFIG_BCH_CONST_M)) || (t != (CONFIG_BCH_CONST_T))) {
-		printk(KERN_ERR "bch encoder/decoder was configured to support "
+		printf("bch encoder/decoder was configured to support "
 		       "parameters m=%d, t=%d only!\n",
 		       CONFIG_BCH_CONST_M, CONFIG_BCH_CONST_T);
 		goto fail;
