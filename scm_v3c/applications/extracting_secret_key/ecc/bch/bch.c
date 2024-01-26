@@ -86,7 +86,7 @@
 #endif
 
 #define DIV_ROUND_UP(n,d) (((n) + (d) - 1) / (d))
-#define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0])
+#define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]))
 
 #define BCH_ECC_WORDS(_p)      DIV_ROUND_UP(GF_M(_p)*GF_T(_p), 32)
 #define BCH_ECC_BYTES(_p)      DIV_ROUND_UP(GF_M(_p)*GF_T(_p), 8)
