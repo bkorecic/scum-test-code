@@ -14,7 +14,8 @@
 #ifndef _BCH_H
 #define _BCH_H
 
-#include <linux/types.h>
+#include <stdint.h>
+#include <stdbool.h>
 
 /**
  * struct bch_control - BCH control structure
