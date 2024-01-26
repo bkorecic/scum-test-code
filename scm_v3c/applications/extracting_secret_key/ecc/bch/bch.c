@@ -301,7 +301,7 @@ void bch_encode(struct bch_control *bch, const uint8_t *data,
 		store_ecc8(bch, ecc, bch->ecc_buf);
 }
 
-static inline int modulo(struct bch_control *bch, unsigned int v)
+static __inline int modulo(struct bch_control *bch, unsigned int v)
 {
 	const unsigned int n = GF_N(bch);
 	while (v >= n) {
@@ -314,13 +314,13 @@ static inline int modulo(struct bch_control *bch, unsigned int v)
 /*
  * shorter and faster modulo function, only works when v < 2N.
  */
-static inline int mod_s(struct bch_control *bch, unsigned int v)
+static __inline int mod_s(struct bch_control *bch, unsigned int v)
 {
 	const unsigned int n = GF_N(bch);
 	return (v < n) ? v : v-n;
 }
 
-static inline unsigned int fls(unsigned int x)
+static __inline unsigned int fls(unsigned int x)
 {
 	unsigned int count = 0;
 
@@ -330,13 +330,13 @@ static inline unsigned int fls(unsigned int x)
 	return count + 1;
 }
 
-static inline int deg(unsigned int poly)
+static __inline int deg(unsigned int poly)
 {
 	/* polynomial degree is the most-significant bit index */
 	return fls(poly)-1;
 }
 
-static inline int parity(unsigned int x)
+static __inline int parity(unsigned int x)
 {
 	/*
 	 * public domain code snippet, lifted from
@@ -350,41 +350,41 @@ static inline int parity(unsigned int x)
 
 /* Galois field basic operations: multiply, divide, inverse, etc. */
 
-static inline unsigned int gf_mul(struct bch_control *bch, unsigned int a,
+static __inline unsigned int gf_mul(struct bch_control *bch, unsigned int a,
 				  unsigned int b)
 {
 	return (a && b) ? bch->a_pow_tab[mod_s(bch, bch->a_log_tab[a]+
 					       bch->a_log_tab[b])] : 0;
 }
 
-static inline unsigned int gf_sqr(struct bch_control *bch, unsigned int a)
+static __inline unsigned int gf_sqr(struct bch_control *bch, unsigned int a)
 {
 	return a ? bch->a_pow_tab[mod_s(bch, 2*bch->a_log_tab[a])] : 0;
 }
 
-static inline unsigned int gf_div(struct bch_control *bch, unsigned int a,
+static __inline unsigned int gf_div(struct bch_control *bch, unsigned int a,
 				  unsigned int b)
 {
 	return a ? bch->a_pow_tab[mod_s(bch, bch->a_log_tab[a]+
 					GF_N(bch)-bch->a_log_tab[b])] : 0;
 }
 
-static inline unsigned int gf_inv(struct bch_control *bch, unsigned int a)
+static __inline unsigned int gf_inv(struct bch_control *bch, unsigned int a)
 {
 	return bch->a_pow_tab[GF_N(bch)-bch->a_log_tab[a]];
 }
 
-static inline unsigned int a_pow(struct bch_control *bch, int i)
+static __inline unsigned int a_pow(struct bch_control *bch, int i)
 {
 	return bch->a_pow_tab[modulo(bch, i)];
 }
 
-static inline int a_log(struct bch_control *bch, unsigned int x)
+static __inline int a_log(struct bch_control *bch, unsigned int x)
 {
 	return bch->a_log_tab[x];
 }
 
-static inline int a_ilog(struct bch_control *bch, unsigned int x)
+static __inline int a_ilog(struct bch_control *bch, unsigned int x)
 {
 	return mod_s(bch, GF_N(bch)-bch->a_log_tab[x]);
 }
